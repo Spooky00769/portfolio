@@ -115,7 +115,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 function setTheme(theme) {
   const nextTheme = theme === "light" ? "light" : "dark";
   document.documentElement.dataset.theme = nextTheme;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextTheme === "dark" ? "#111411" : "#f5f5ef");
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextTheme === "dark" ? "#0b1422" : "#f4f8fb");
   themeButtons.forEach((button) => {
     const label = nextTheme === "dark" ? "Switch to light theme" : "Switch to dark theme";
     button.setAttribute("aria-label", label);
