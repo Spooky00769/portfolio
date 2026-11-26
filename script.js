@@ -133,7 +133,14 @@ themeButtons.forEach((button) => {
     setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
   });
 });
-setTheme(document.documentElement.dataset.theme);
+
+// Force light theme on initial load if no preference is saved yet
+try {
+  const savedTheme = localStorage.getItem("puskar-theme");
+  setTheme(savedTheme === "dark" ? "dark" : "light");
+} catch (_) {
+  setTheme("light");
+}
 
 function closeMobileMenu({ restoreFocus = false } = {}) {
   if (!menuToggle || !navigationPanel) return;

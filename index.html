@@ -9,8 +9,15 @@
   <script>
     try {
       const savedTheme = localStorage.getItem('puskar-theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme;
-    } catch (_) {}
+      // If a saved theme exists use it, otherwise default strictly to 'light'
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.dataset.theme = savedTheme;
+      } else {
+        document.documentElement.dataset.theme = 'light';
+      }
+    } catch (_) {
+      document.documentElement.dataset.theme = 'light';
+    }
   </script>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
