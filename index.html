@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111918">
+  <meta name="description" content="Puskar Dhungana is a CSIT student and aspiring software developer based in Dharan, Nepal.">
+  <title>Puskar Dhungana — Aspiring Software Developer</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('puskar-theme');
+      // If a saved theme exists use it, otherwise default strictly to 'light'
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.dataset.theme = savedTheme;
+      } else {
+        document.documentElement.dataset.theme = 'light';
+      }
+    } catch (_) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Puskar Dhungana, home">
+        <span class="brand-mark" aria-hidden="true">PD</span>
+        <span class="brand-name">puskar<span class="brand-dot">.</span></span>
+      </a>
+
+      <div class="nav-panel" id="navigation-panel">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-mobile-actions">
+          <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+            <span class="theme-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navigation-panel">
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-anchor" id="home" aria-labelledby="hero-title">
+      <div class="hero-glow hero-glow--one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--two" aria-hidden="true"></div>
+      <div class="hero-inner page-width">
+        <div class="hero-copy">
+          <div class="portrait-note"><span class="note-dot" aria-hidden="true"></span> Open to learning &amp; collaboration</div>
+          <p class="eyebrow"><span class="eyebrow-line"></span> Hello, I'm</p>
+          <h1 id="hero-title">Puskar<br><span>Dhungana</span></h1>
+          <p class="hero-role">Computer Science Student <span aria-hidden="true">·</span><br class="mobile-break"> Aspiring Software Developer</p>
+          <p class="hero-intro">I’m learning how thoughtful software gets made, and looking forward to building useful things along the way.</p>
+          <p class="location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></svg> Itahari, Nepal</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+            <a class="button button--text" href="#contact">Let’s talk <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-socials" aria-label="Social links">
+            <a href="https://github.com/Spooky00769" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub <span aria-hidden="true">↗</span></a>
+            <span class="social-divider" aria-hidden="true"></span>
+            <a href="https://www.linkedin.com/in/puskar-dhungana-665a6b255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Profile photograph area">
+          <div class="portrait-frame">
+            <div class="portrait-placeholder" id="portrait-placeholder" aria-label="Profile photo placeholder">
+              <span class="portrait-initials" aria-hidden="true">PD</span>
+              <span class="portrait-caption">A photo of me<br><code>assets/profile.jpg</code></span>
+            </div>
+            <img class="profile-image" id="profile-image" src="images/IMG_20261114_103939.jpg" alt="Portrait of Puskar Dhungana" hidden>
+          </div>
+          <span class="visual-index" aria-hidden="true">01 / 06</span>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about"><span class="scroll-cue-line" aria-hidden="true"></span> Scroll to explore</a>
+    </section>
+
+    <section class="section about-section section-anchor" id="about" aria-labelledby="about-title">
+      <div class="page-width">
+        <div class="section-heading reveal">
+          <p class="section-kicker">A little about me <span>01</span></p>
+          <h2 id="about-title">Curious by nature.<br><span>Learning by building.</span></h2>
+        </div>
+        <div class="about-layout">
+          <div class="about-copy reveal">
+            <p class="lead-copy">I’m a B.Sc. CSIT student at Birendra Memorial College in Dharan, studying at Tribhuvan University.</p>
+            <p>Technology keeps me curious: how ideas become software, how data is organized, and how a small detail can make a tool easier to use. I’m building my understanding step by step, staying open to new ideas, and learning through practice.</p>
+            <p>My goal is to grow into a software developer who can help solve real problems and make useful, considered products.</p>
+            <a class="inline-link" href="#journey">More about my journey <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="fact-grid" id="fact-grid" aria-label="A few quick facts"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills-section section-anchor" id="skills" aria-labelledby="skills-title">
+      <div class="page-width">
+        <div class="section-heading section-heading--split reveal">
+          <div><p class="section-kicker">What I’m exploring <span>02</span></p><h2 id="skills-title">A work in<br><span>progress.</span></h2></div>
+          <p class="section-aside">I’m early in my journey, so I keep this list honest. These are interests and learning areas, not claims of professional proficiency.</p>
+        </div>
+        <div class="skills-grid" id="skills-grid"></div>
+        <p class="edit-note"><span aria-hidden="true">✳</span> This list is easy to update as I learn. <code>skillsData</code> lives in <code>script.js</code>.</p>
+      </div>
+    </section>
+
+    <section class="section projects-section section-anchor" id="projects" aria-labelledby="projects-title">
+      <div class="page-width">
+        <div class="section-heading section-heading--split reveal">
+          <div><p class="section-kicker">Selected work <span>03</span></p><h2 id="projects-title">Made with<br><span>curiosity.</span></h2></div>
+          <p class="section-aside">I’m making room for the projects ahead. When something is ready to share, this is where you’ll find it.</p>
+        </div>
+        <div class="project-toolbar">
+          <p class="project-count" id="project-count" aria-live="polite"></p>
+          <div class="project-filters" role="group" aria-label="Filter projects by category">
+            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All <span>04</span></button>
+            <button class="filter-button" type="button" data-filter="web" aria-pressed="false">Web development</button>
+            <button class="filter-button" type="button" data-filter="python" aria-pressed="false">Python</button>
+            <button class="filter-button" type="button" data-filter="other" aria-pressed="false">Other</button>
+          </div>
+        </div>
+        <div class="projects-grid" id="projects-grid"></div>
+        <div class="projects-empty" id="projects-empty" hidden>
+          <span class="empty-mark" aria-hidden="true">✳</span>
+          <h3>The first project is on its way.</h3>
+          <p>There’s space here for the things I build next. Check back soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section education-section section-anchor" id="education" aria-labelledby="education-title">
+      <div class="page-width">
+        <div class="section-heading reveal">
+          <p class="section-kicker">The foundation <span>04</span></p>
+          <h2 id="education-title">Where I’m<br><span>learning.</span></h2>
+        </div>
+        <div class="education-layout">
+          <div class="timeline" id="education-timeline"></div>
+          <aside class="education-aside reveal">
+            <span class="aside-number" aria-hidden="true">01</span>
+            <p class="aside-label">The long view</p>
+            <h3>Learning is a practice, not a finish line.</h3>
+            <p>I’m building a strong foundation in computer science and exploring where I can make the most useful contribution.</p>
+            <span class="aside-rule" aria-hidden="true"></span>
+            <p class="aside-small">Academic details are editable in <code>educationData</code> in <code>script.js</code>.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journey-section section-anchor" id="journey" aria-labelledby="journey-title">
+      <div class="page-width">
+        <div class="journey-panel reveal">
+          <div class="journey-heading">
+            <p class="section-kicker">One step at a time <span>05</span></p>
+            <h2 id="journey-title">My learning<br><span>journey.</span></h2>
+            <p>There’s a lot left to discover. Here’s the direction I’m heading in.</p>
+          </div>
+          <div class="journey-list" id="journey-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section section-anchor" id="contact" aria-labelledby="contact-title">
+      <div class="page-width">
+        <div class="contact-heading reveal">
+          <p class="section-kicker">Have a thought to share? <span>06</span></p>
+          <h2 id="contact-title">Let’s start a<br><span>conversation.</span></h2>
+          <p>I’d be glad to connect, learn from others, or hear about interesting ideas.</p>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-details reveal">
+            <a class="contact-card" href="mailto:dhungana.puskar01@gmail.com">
+              <span class="contact-icon" aria-hidden="true">@</span><span><small>Email me</small><strong>dhungana.puskar01@gmail.com</strong></span><span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-card" href="https://github.com/Spooky00769" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon contact-icon--github" aria-hidden="true">GH</span><span><small>Find me on</small><strong>GitHub</strong></span><span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-card" href="https://www.linkedin.com/in/puskar-dhungana-665a6b255/" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon contact-icon--linkedin" aria-hidden="true">in</span><span><small>Connect on</small><strong>LinkedIn</strong></span><span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="resume-card">
+              <div><span class="resume-label">Resume</span><p id="resume-status">Add your PDF at <code>assets/resume.pdf</code>, then enable it in <code>script.js</code>.</p></div>
+              <button class="button button--outline button--small" type="button" id="resume-button">Resume <span aria-hidden="true">↓</span></button>
+            </div>
+          </div>
+
+          <form class="contact-form reveal" id="contact-form" novalidate>
+            <div class="form-intro"><h3>Send a note</h3><p>Your email app will open with a draft. Nothing is sent automatically.</p></div>
+            <div class="form-row">
+              <div class="form-field"><label for="name">Your name <span aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required minlength="2" maxlength="80"></div>
+              <div class="form-field"><label for="email">Email address <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="jane@example.com" required maxlength="120"></div>
+            </div>
+            <div class="form-field"><label for="subject">Subject <span aria-hidden="true">*</span></label><input id="subject" name="subject" type="text" placeholder="What’s on your mind?" required minlength="2" maxlength="120"></div>
+            <div class="form-field"><label for="message">Message <span aria-hidden="true">*</span></label><textarea id="message" name="message" rows="5" placeholder="Write a few lines..." required minlength="10" maxlength="3000"></textarea></div>
+            <button class="button button--primary form-submit" type="submit">Open email draft <span aria-hidden="true">↗</span></button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="floating-top" id="back-to-top" type="button" aria-label="Back to top" hidden>
+    <span aria-hidden="true">↑</span>
+  </button>
+
+  <footer class="site-footer">
+    <div class="page-width footer-inner">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">PD</span><span class="brand-name">puskar<span class="brand-dot">.</span></span></a>
+      <p>Learning, building, and figuring it out.<br><span>© <span id="current-year"></span> Puskar Dhungana</span></p>
+      <a class="back-to-top" href="#home">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+</body>
+</html>
