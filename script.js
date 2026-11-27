@@ -112,57 +112,10 @@ const navigationPanel = document.querySelector("#navigation-panel");
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-// Use a small desktop-only cursor accent; native touch and text-entry cursors remain intact.
-const customCursor = document.querySelector(".custom-cursor");
-const finePointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 781px)");
-if (customCursor && finePointer.matches && !reducedMotion.matches) {
-  const ring = customCursor.querySelector(".custom-cursor__ring");
-  const textEntrySelector = 'input, textarea, select, [contenteditable="true"]';
-  let pointerX = -100;
-  let pointerY = -100;
-  let ringX = pointerX;
-  let ringY = pointerY;
-  let framePending = false;
-
-  document.body.classList.add("has-custom-cursor");
-  const moveCursor = (event) => {
-    if (event.pointerType && event.pointerType !== "mouse") return;
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-    customCursor.style.setProperty("--cursor-x", `${pointerX}px`);
-    customCursor.style.setProperty("--cursor-y", `${pointerY}px`);
-    customCursor.classList.add("is-visible");
-    if (!framePending) {
-      framePending = true;
-      requestAnimationFrame(function followPointer() {
-        ringX += (pointerX - ringX) * 0.34;
-        ringY += (pointerY - ringY) * 0.34;
-        ring.style.transform = `translate3d(${ringX - pointerX}px, ${ringY - pointerY}px, 0) translate(-50%, -50%)`;
-        if (Math.abs(pointerX - ringX) + Math.abs(pointerY - ringY) > 0.4) requestAnimationFrame(followPointer);
-        else framePending = false;
-      });
-    }
-  };
-
-  document.addEventListener("pointermove", moveCursor, { passive: true });
-  document.addEventListener("pointerover", (event) => {
-    if (event.pointerType && event.pointerType !== "mouse") return;
-    const target = event.target;
-    customCursor.classList.toggle("is-text", Boolean(target.closest(textEntrySelector)));
-    customCursor.classList.toggle("is-interactive", Boolean(target.closest('a[href], button:not(:disabled), [role="button"]')) && !target.closest(textEntrySelector));
-  });
-  document.addEventListener("pointerout", (event) => {
-    if (event.relatedTarget) return;
-    customCursor.classList.remove("is-visible", "is-interactive", "is-text");
-  });
-  document.addEventListener("keydown", () => customCursor.classList.remove("is-visible", "is-interactive", "is-text"));
-  window.addEventListener("blur", () => customCursor.classList.remove("is-visible", "is-interactive", "is-text"));
-}
-
 function setTheme(theme) {
   const nextTheme = theme === "light" ? "light" : "dark";
   document.documentElement.dataset.theme = nextTheme;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextTheme === "dark" ? "#0b1422" : "#f4f8fb");
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextTheme === "dark" ? "#111918" : "#F3F4E1");
   themeButtons.forEach((button) => {
     const label = nextTheme === "dark" ? "Switch to light theme" : "Switch to dark theme";
     button.setAttribute("aria-label", label);
@@ -499,19 +452,35 @@ function setupBackToTop() {
   const button = document.querySelector("#back-to-top");
   if (!button) return;
   let hideTimer;
+  let framePending = false;
+  let isVisible = false;
 
   const updateVisibility = () => {
-    if (window.scrollY > 500) {
-      window.clearTimeout(hideTimer);
-      button.hidden = false;
-      window.requestAnimationFrame(() => button.classList.add("is-visible"));
-      return;
-    }
-    button.classList.remove("is-visible");
-    window.clearTimeout(hideTimer);
-    hideTimer = window.setTimeout(() => {
-      if (window.scrollY <= 500) button.hidden = true;
-    }, 210);
+    if (framePending) return;
+    framePending = true;
+    window.requestAnimationFrame(() => {
+      framePending = false;
+      const shouldShow = window.scrollY > 500;
+
+      if (shouldShow) {
+        window.clearTimeout(hideTimer);
+        if (!isVisible) {
+          isVisible = true;
+          button.hidden = false;
+          button.classList.add("is-visible");
+        }
+        return;
+      }
+
+      if (isVisible) {
+        isVisible = false;
+        button.classList.remove("is-visible");
+        window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(() => {
+          if (window.scrollY <= 500) button.hidden = true;
+        }, 210);
+      }
+    });
   };
 
   window.addEventListener("scroll", updateVisibility, { passive: true });
@@ -519,6 +488,20 @@ function setupBackToTop() {
     window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
   });
   updateVisibility();
+}
+
+function setupHeroAnimations() {
+  const hero = document.querySelector(".hero");
+  if (!hero || reducedMotion.matches) return;
+  if (!("IntersectionObserver" in window)) {
+    hero.classList.add("is-in-view");
+    return;
+  }
+
+  const heroObserver = new IntersectionObserver(([entry]) => {
+    hero.classList.toggle("is-in-view", entry.isIntersecting);
+  }, { rootMargin: "120px 0px", threshold: 0 });
+  heroObserver.observe(hero);
 }
 
 function setupScrollReveal() {
@@ -554,5 +537,6 @@ setupProfileImage();
 setupResumeButton();
 setupContactForm();
 setupBackToTop();
+setupHeroAnimations();
 setupScrollReveal();
 setCurrentYear();
