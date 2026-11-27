@@ -112,6 +112,53 @@ const navigationPanel = document.querySelector("#navigation-panel");
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+// Use a small desktop-only cursor accent; native touch and text-entry cursors remain intact.
+const customCursor = document.querySelector(".custom-cursor");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 781px)");
+if (customCursor && finePointer.matches && !reducedMotion.matches) {
+  const ring = customCursor.querySelector(".custom-cursor__ring");
+  const textEntrySelector = 'input, textarea, select, [contenteditable="true"]';
+  let pointerX = -100;
+  let pointerY = -100;
+  let ringX = pointerX;
+  let ringY = pointerY;
+  let framePending = false;
+
+  document.body.classList.add("has-custom-cursor");
+  const moveCursor = (event) => {
+    if (event.pointerType && event.pointerType !== "mouse") return;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    customCursor.style.setProperty("--cursor-x", `${pointerX}px`);
+    customCursor.style.setProperty("--cursor-y", `${pointerY}px`);
+    customCursor.classList.add("is-visible");
+    if (!framePending) {
+      framePending = true;
+      requestAnimationFrame(function followPointer() {
+        ringX += (pointerX - ringX) * 0.34;
+        ringY += (pointerY - ringY) * 0.34;
+        ring.style.transform = `translate3d(${ringX - pointerX}px, ${ringY - pointerY}px, 0) translate(-50%, -50%)`;
+        if (Math.abs(pointerX - ringX) + Math.abs(pointerY - ringY) > 0.4) requestAnimationFrame(followPointer);
+        else framePending = false;
+      });
+    }
+  };
+
+  document.addEventListener("pointermove", moveCursor, { passive: true });
+  document.addEventListener("pointerover", (event) => {
+    if (event.pointerType && event.pointerType !== "mouse") return;
+    const target = event.target;
+    customCursor.classList.toggle("is-text", Boolean(target.closest(textEntrySelector)));
+    customCursor.classList.toggle("is-interactive", Boolean(target.closest('a[href], button:not(:disabled), [role="button"]')) && !target.closest(textEntrySelector));
+  });
+  document.addEventListener("pointerout", (event) => {
+    if (event.relatedTarget) return;
+    customCursor.classList.remove("is-visible", "is-interactive", "is-text");
+  });
+  document.addEventListener("keydown", () => customCursor.classList.remove("is-visible", "is-interactive", "is-text"));
+  window.addEventListener("blur", () => customCursor.classList.remove("is-visible", "is-interactive", "is-text"));
+}
+
 function setTheme(theme) {
   const nextTheme = theme === "light" ? "light" : "dark";
   document.documentElement.dataset.theme = nextTheme;
